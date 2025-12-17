@@ -25,5 +25,20 @@ func (t *RedBlackTree) Insert(root *Node, value int) {
 		return
 	}
 
+    newNode := &Node{Value: value, Color: "red", Left: nil, Right: nil, Parent: root}
+
+    if (value > root.Value) {
+        if (root.Right != nil) {
+            Insert(root.Right, value)
+        } else {
+            root.Right = newNode
+        }
+    } else {
+        if (root.Left != nil) {
+            Insert(root.Left, value)
+        } else {
+            root.Left = newNode
+        }
+    }
 	// New nodes will always be appened to the "end" of the tree
 }
