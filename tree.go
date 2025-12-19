@@ -3,6 +3,9 @@
 2. The root is black
 3. Every path from a node to any of its descedant NIL nodes have the same number of black nodes
 4. Every red node must have two black child nodes
+
+Note: the whole idea of a red black structure is to enforce a height limit.
+If you were to use a binary search algorithm on a tree with longitudinally sorted notes, it may look like a straight line.
 */
 
 package main
@@ -24,8 +27,12 @@ func (t *RedBlackTree) Insert(root *Node, value int) {
 	if root == nil {
 		return
 	}
+ color = "red"
+	if (root.Parent == nil) {
+		color = "black"
+}
 
-    newNode := &Node{Value: value, Color: "red", Left: nil, Right: nil, Parent: root}
+    newNode := &Node{Value: value, Color: color, Left: nil, Right: nil, Parent: root}
 
     if (value > root.Value) {
         if (root.Right != nil) {
